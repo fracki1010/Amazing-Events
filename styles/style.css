@@ -5,10 +5,13 @@
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     }
     .flecha{
-        visibility: collapse;
+        display: none;
     }
     .categorias{
         display: none;
+    }
+    .casa{
+        justify-content: center;
     }
 }
 
@@ -16,7 +19,17 @@
     .navegador{
         background-color: red;
         color: white;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-family:sans-serif;
+        width: 5rem;
+        height: 3.5rem;
+        font-size: 1rem;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-color: black;
+        border-style:groove;
+        
     }
     .desplegable{
         display: none;
@@ -24,4 +37,11 @@
     .categorias{
         display: flex;
     }
+    .casa{
+        justify-content: space-between;
+    }
+}
+
+.barra{
+    width: 6rem;
 }
