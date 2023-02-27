@@ -1,70 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amenzing Events</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amenzing Events</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="shortcut icon" href="https://genfavicon.com/tmp/icon_9efd253ee124da38e5549ad0c417c6ea.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="shortcut icon" href="https://genfavicon.com/tmp/icon_9efd253ee124da38e5549ad0c417c6ea.ico"
+    type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
+
 <body class="bg-dark text-light">
-    <header>
-        <nav class="navbar navbar-expand-md pt-3 bg-white">
-          <div class="container-fluid">
-            <img src="./assets/images/Logo Amazing Events.png" width="200px" alt="">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse me-4 d-md-flex justify-content-end" id="navbarNavAltMarkup">
-              <div class="navbar-nav gap-md-4  fs-5">
-                <a class="nav-link navegador" aria-current="page" href="./index.html">Home</a>
-                <a class="nav-link navegador" href="./upcoming.html">Upcoming Event</a>
-                <a class="nav-link navegador" href="./past.html">Past Events</a>
-                <a class="nav-link navegador" href="./contact.html">Contact</a>
-                <a class="nav-link navegador" href="#">Stats</a>
-              </div>
-            </div>
+  <header>
+    <nav class="navbar navbar-expand-md pt-3 bg-white">
+      <div class="container-fluid">
+        <img src="./assets/images/Logo Amazing Events.png" width="200px" alt="">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse me-4 d-md-flex justify-content-end" id="navbarNavAltMarkup">
+          <div class="navbar-nav gap-md-4  fs-5">
+            <a class="nav-link navegador" aria-current="page" href="./index.html">Home</a>
+            <a class="nav-link navegador" href="./upcoming.html">Upcoming Event</a>
+            <a class="nav-link navegador" href="./pastEvents.html">Past Events</a>
+            <a class="nav-link navegador" href="./contact.html">Contact</a>
+            <a class="nav-link navegador" href="#">Stats</a>
           </div>
-        </nav>
-      </header>
-      <main>
-        <div class="m-4 p-2 d-flex flex-wrap">
-          <table class="table table-bordered border-danger text-light p-3">
-            <tr>
-              <th colspan="3">Events statistics</th>
-            </tr>
-            <tr>
-              <td>Events with the highest percentage of attendance</th>
-              <td>Events with the highest percentage of attendance</th>
-              <td>Event with larger capacity</th>
-            </tr>
-
-            <tr>
-              <th colspan="3">Upcoming event statistcs by category</th>
-            </tr>
-            <tr>
-              <td>Categories</th>
-              <td>Revenues</th>
-              <td>Percentage of attendance</td>
-            </tr>
-
-            <tr>
-              <th colspan="3">Past Events statistcs by category</th>
-            </tr>
-            <tr>
-
-              <td>Categories</td>
-              <td>Revenues</td>
-              <td>Percentage of attendance</td>
-              
-            </tr>
-          </table>
         </div>
-        
-      </main>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="p-4 d-flex casa flechasNav">
+      <a href="./contact.html"><i class="bi bi-chevron-compact-left flecha fs-2 text-light"></i></a>
+      <h1 class="text-light">Stats</h1>
+      <a href="./index.html"><i class="bi bi-chevron-compact-right flecha fs-2 text-light"></i></a>
+    </div>
+    <div class="m-4 p-2 d-flex flex-wrap">
+      <table class="table table-bordered border-danger text-light p-3">
+
+        <tr>
+          <th colspan="3" class="fs-3 text-danger">Events statistics</th>
+        </tr>
+        <tr>
+          <td>Events with the highest percentage of attendance</th>
+          <td>Events with the highest percentage of attendance</th>
+          <td>Event with larger capacity</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th colspan="3" class="fs-3 text-danger">Upcoming event statistcs by category</th>
+        </tr>
+        <tr>
+          <td>Categories</th>
+          <td>Revenues</th>
+          <td>Percentage of attendance</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th colspan="3" class="fs-3 text-danger">Past Events statistcs by category</th>
+        </tr>
+        <tr>
+
+          <td>Categories</td>
+          <td>Revenues</td>
+          <td>Percentage of attendance</td>
+
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
