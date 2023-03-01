@@ -20,7 +20,7 @@
     <header>
         <nav class="navbar navbar-expand-md pt-3 bg-white">
             <div class="container-fluid">
-                <img src="./assets/images/Logo Amazing Events.png" width="200px" alt="">
+                <img class="p-2 me-1" src="./assets/images/Logo Amazing Events.png" width="200px" alt="">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -38,13 +38,14 @@
             </div>
         </nav>
     </header>
-    <main>
+    <main class="mb-5 pb-2">
         <div class="p-4 d-flex casa flechasNav">
             <a href="./pastEvents.html"><i class="bi bi-chevron-compact-left flecha fs-2 text-light"></i></a>
             <h1 class="text-light">Contact Us</h1>
             <a href="./stats.html"><i class="bi bi-chevron-compact-right flecha fs-2 text-light"></i></a>
         </div>
-        <div class="m-lg-3 p-2 d-flex flex-column align-items-center">
+
+        <div class="m-lg-3 p-1 d-flex flex-column align-items-center container mb-3">
             <div class="mb-3 col-8">
                 <label for="name" class="form-label text-light fs-4">Name:</label>
                 <input type="text" class="form-control" id="name" placeholder="Franco Nicolas Galdame">
@@ -57,6 +58,10 @@
                 <label for="mensagge" class="form-label text-light fs-4">Mensagge:</label>
                 <textarea class="form-control" id="mensagge" rows="3"></textarea>
             </div>
+
+            <div class="mb-3 col-8" style="height: 4rem;">
+                <button class="btn h-100 fs-4 fw-bolder" style="border-radius: 1rem;" type="submit">Enviar</button>
+            </div>
         </div>
 
     </main>
@@ -68,9 +73,9 @@
       <i class="bi bi-instagram fs-3"></i>
       <i class="bi bi-whatsapp fs-3"></i>
     </div>
-    <div class="m-2 d-flex">
-      <h5>Cohort</h5>
-    </div>
+    <div class="m-2">
+        <p class="fs-5 d-flex p-0 m-0 fw-bold">Cohort</p>
+      </div>
   </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

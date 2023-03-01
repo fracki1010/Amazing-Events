@@ -13,6 +13,12 @@
     .casa{
         justify-content: center;
     }
+
+    .pastEvent{
+        background-image: url(../assets/images/pexels-photo-14102186.jpeg);
+        background-size: cover;
+        background-position:center;
+    }
 }
 
 @media only screen and (min-width: 767px){
@@ -21,9 +27,9 @@
         border-radius: 4vh;
         color: white;
         font-family:fantasy;
-        width: 6rem;
+        width: 5.5rem;
         height: 3.5rem;
-        font-size: 1rem;
+        font-size: 0.9rem;
         text-align: center;
         display: flex;
         justify-content: center;
@@ -47,6 +53,11 @@
         transform: scale(2);
         transition: .5s;
     }
+    .pastEvent{
+        background-image: url(../assets/images/Russian-Museum-St-Petersburg_1920x1200.jpg);
+        background-size: cover;
+        background-position: center;
+    }
 }
 
 .barra{
@@ -57,10 +68,24 @@
     height: 10vh;
 }
 
-.details{
-    height: 70vh;
+footer,.btn {
+    background-color: rgb(220,4,108);
 }
 
-footer{
-    background-color: rgb(220,4,108);
+.upcoming{
+    background-image: url(../assets/images/amigos-tintinean-vasos-bebida-bar-moderno_1150-18971.avif);
+    background-size: cover;
+}
+
+.stats{
+    background-image: url(../assets/images/descarga.webp);
+}
+
+.table{
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: sans-serif;
+    border: 10px 40px 40px 3rem red;
+    border-block-color: white;
+
 }
