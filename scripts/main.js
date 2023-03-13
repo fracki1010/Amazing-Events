@@ -37,7 +37,6 @@
 
 let contenedorCard = document.getElementById("contenedorCard")
 
-let stringTarjetas = ``
 
 
 {/* <div class="card" id="" style="width: 16rem;">
@@ -55,26 +54,51 @@ let stringTarjetas = ``
 
 
 
-function dibujarTarjetas(obj) {
-  for (eventos of obj) {
 
-      stringTarjetas +=
-        `<div class="card" id="" style="width: 16rem;">
-    <img src="${eventos.image} alt="...">
-    <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
-      <h5 class="card-title">${eventos.name}</h5>
-      <p class="card-text">${eventos.description}</p>
-      <div class="d-flex justify-content-between align-items-center container-fluid">
-        <h6>Price: <span>${eventos.price}</span>$</h6>
-          <a class="btn btn-primary p-1 m-1" href="./details.html">Ver mas...</a>
+
+function dibujarTarjetas(obj,contenedorHTML){
+  let stringTarjetas = ``
+  obj.forEach((evento)=>{ 
+    stringTarjetas +=
+          `<div class="card" id="" style="width: 16rem;">
+      <img src="${evento.image} alt="...">
+      <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
+        <h5 class="card-title">${evento.name}</h5>
+        <p class="card-text">${evento.description}</p>
+        <div class="d-flex justify-content-between align-items-center container-fluid">
+          <h6>Price: <span>${evento.price}</span>$</h6>
+            <buttom class="btn btn-primary p-1 m-1" href="" id="${evento._id}" >Ver mas...</buttom>
+        </div>
       </div>
-    </div>
-  </div>`
-  }
-  contenedorCard.innerHTML = stringTarjetas;
+    </div>`
+  })
+  contenedorHTML.innerHTML = stringTarjetas;
 }
 
-dibujarTarjetas(data.events)
+
+dibujarTarjetas(data.events,contenedorCard);
+
+
+
+
+
+let listaDetalles=[]
+
+for(detalles of data.events){
+  listaDetalles.push(document.getElementById(detalles._id))
+}
+
+/* let detalles = document.querySelectorAll(" .detalles"); */
+var contador = 0;
+
+console.log(listaDetalles);
+
+
+
+
+
+  
+
 
 /* let listaCategorias = document.querySelectorAll(".lCategorias")
 

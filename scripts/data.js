@@ -171,3 +171,5 @@ var data = {
       }
     ]
   };
+
+  var contador
