@@ -1,66 +1,86 @@
-
-/*  for(let i = 0; i<14; i++){
-   if(data.events[i].category == "Museum"){
-       console.log(data.events[i].category)
-   }
- };
-*/
-
-
-
-
-/*  let listaDeCards = document.getElementsByClassName("card");
- let listaCategorias = document.getElementsByClassName("lCategorias")
-
-
- console.log(listaDeCards[0]);
-
- for(let a = 0; a<14; a++){
-   listaDeCards[a].childNodes[3].childNodes[1].innerText = data.events[a].name //titulo de cada tarjeta
-   listaDeCards[a].children[1].children[1].innerText = data.events[a].description //descripcion de cada tarjeta
-   listaDeCards[a].children[0].src = data.events[a].image //imagenes de cada tarjeta
-   listaDeCards[a].children[1].children[2].children[0].children[0].innerText = data.events[a].price //precio de cada tarjeta
-   
- }
-
- for(let b=0; b<8; b++){
-   console.log(listaCategorias[b].children[0].value);
-   if(listaCategorias[b].children[0].value == data.events[b].category){
-
-   }
- }
-
- for(eventos of data.events){
-   console.log(eventos);
- } */
-
-
+//capturadores
 let contenedorCard = document.getElementById("contenedorCard")
 
+let buscador = document.getElementById("buscador")
+
+let botonBuscador = document.forms[0];
+let ContenedorChequeo = document.getElementById("categorias");
+
+console.log(botonBuscador);
+
+/* contenedorChequeo.addEventListener(`change`, ()=>{
+  let CategoriasFiltradas = filtroCategorias(data.events);
+  dibujarTarjetas(CategoriasFiltradas, contenedorCard);
+}); */
+
+/* botonBuscador.addEventListener("submit", (e) => {
+  e.preventDefault()
+  let filtro = filtroBuscador(data.events, buscador.value);
+  dibujarTarjetas(filtro, contenedorCard);
+}) */
 
 
-{/* <div class="card" id="" style="width: 16rem;">
-        <img src="./assets/images/Music_Concert.jpg" class="card-img-top" alt="...">
-        <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
-          <h5 class="card-title">Titulo</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <div class="d-flex justify-content-between align-items-center container-fluid">
-            <h6>Price: <span>300</span>$</h6>
-              <a class="btn btn-primary p-1 m-1" href="./details.html">Ver mas...</a>
-          </div>
-        </div>
-      </div> */}
+//llamadas 
+
+dibujarTarjetas(data.events, contenedorCard);
+
+botonBuscador.addEventListener("submit",FiltroDoble)
+
+ContenedorChequeo.addEventListener("change", FiltroDoble)
+
+
+dibujarCategorias(data.events);
 
 
 
 
 
-function dibujarTarjetas(obj,contenedorHTML){
+//funciones
+
+
+function FiltroDoble(){
+  let primerFiltro = filtroBuscador(data.events, buscador.value);
+  let segundoFiltro = filtroCategorias(primerFiltro)
+  dibujarTarjetas(segundoFiltro,contenedorCard);
+}
+
+function filtroBuscador(lista, texto) {
+  let listaFiltrada = lista.filter(element => element.name.toLowerCase().includes(texto.toLowerCase()));
+  return listaFiltrada;
+}
+
+function dibujarCategorias(lista) {
+  let categorias = lista.map((e) => e.category);
+  let setCategorias = new Set(categorias.sort((a,b)=>{
+    if(a<b){
+      return -1;
+    }
+    if(a>b){
+      return 1;
+    }
+  }));
+
+  let string = ``;
+  setCategorias.forEach((e) => {
+    string +=
+      `<div class="form-check m-3 border-0">
+      <input class="form-check-input" type="checkbox" id="${e}" value="${e}">
+      <label class="form-check-label" for="${e}">${e}</label>
+      </div>`
+  ContenedorChequeo.innerHTML = string;
+
+  })
+}
+
+function dibujarTarjetas(obj, contenedorHTML) {
+  if (obj.length == 0) {
+    contenedorHTML.innerHTML = `<h3 class="text-light p-3"> No hay elementos que coincidan con la busqueda</h3>`;
+    return
+  }
   let stringTarjetas = ``
-  obj.forEach((evento)=>{ 
+  obj.forEach((evento) => {
     stringTarjetas +=
-          `<div class="card" id="" style="width: 16rem;">
+      `<div class="card" id="" style="width: 16rem;">
       <img src="${evento.image} alt="...">
       <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
         <h5 class="card-title">${evento.name}</h5>
@@ -76,42 +96,18 @@ function dibujarTarjetas(obj,contenedorHTML){
 }
 
 
-dibujarTarjetas(data.events,contenedorCard);
-
-
-
-
-
-let listaDetalles=[]
-
-for(detalles of data.events){
-  listaDetalles.push(document.getElementById(detalles._id))
-}
-
-/* let detalles = document.querySelectorAll(" .detalles"); */
-var contador = 0;
-
-console.log(listaDetalles);
-
-
-
-
-
+function filtroCategorias(lista){
+  let checkCategorias = document.querySelectorAll("input[type='checkbox']");
   
+  let checkCategoriasArr = Array.from(checkCategorias); //pasar los elementos a un array porque son un Node List
+  let checkConfirmados = checkCategoriasArr.filter((e)=> e.checked);
 
+  if(checkConfirmados.length == 0){
+    return lista;
+  }
 
-/* let listaCategorias = document.querySelectorAll(".lCategorias")
+  let categoriaCheckbox = checkConfirmados.map ((e)=> e.value);
+  let filtrarCheckCategorias = lista.filter((e)=> categoriaCheckbox.includes(e.category));
 
-let cat_1 = document.getElementById("buscar");
-
-cat_1.addEventListener("click",function(){
-  console.log("encendido");
-  listaCategorias.forEach((e) => {
-    if(e.checked == true){
-      console.log(e.value)
-    }
-  });
-}) */
-
-/* console.log(listaCategorias[0].children[0].value); */
-
+  return filtrarCheckCategorias;
+}
