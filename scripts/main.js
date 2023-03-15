@@ -8,23 +8,15 @@ let ContenedorChequeo = document.getElementById("categorias");
 
 console.log(botonBuscador);
 
-/* contenedorChequeo.addEventListener(`change`, ()=>{
-  let CategoriasFiltradas = filtroCategorias(data.events);
-  dibujarTarjetas(CategoriasFiltradas, contenedorCard);
-}); */
-
-/* botonBuscador.addEventListener("submit", (e) => {
-  e.preventDefault()
-  let filtro = filtroBuscador(data.events, buscador.value);
-  dibujarTarjetas(filtro, contenedorCard);
-}) */
-
 
 //llamadas 
 
 dibujarTarjetas(data.events, contenedorCard);
 
-botonBuscador.addEventListener("submit",FiltroDoble)
+botonBuscador.addEventListener("submit",(e)=>{
+  e.preventDefault()
+  FiltroDoble();
+})
 
 ContenedorChequeo.addEventListener("change", FiltroDoble)
 
