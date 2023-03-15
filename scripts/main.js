@@ -6,7 +6,6 @@ let buscador = document.getElementById("buscador")
 let botonBuscador = document.forms[0];
 let ContenedorChequeo = document.getElementById("categorias");
 
-console.log(botonBuscador);
 
 
 //llamadas 
@@ -79,7 +78,7 @@ function dibujarTarjetas(obj, contenedorHTML) {
         <p class="card-text">${evento.description}</p>
         <div class="d-flex justify-content-between align-items-center container-fluid">
           <h6>Price: <span>${evento.price}</span>$</h6>
-            <buttom class="btn btn-primary p-1 m-1" href="" id="${evento._id}" >Ver mas...</buttom>
+            <a class="btn btn-primary p-1 m-1" href="./details.html?id=${evento._id}" id="${evento._id}" >Ver mas...</a>
         </div>
       </div>
     </div>`
