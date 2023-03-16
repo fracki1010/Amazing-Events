@@ -19,6 +19,11 @@
         background-size: cover;
         background-position:center;
     }
+
+    .home{
+        background-image: url(../assets/images/pexels-kasuma-1785493.jpg);
+        background-size: cover;
+    }
 }
 
 @media only screen and (min-width: 767px){
@@ -58,6 +63,11 @@
         background-size: cover;
         background-position: center;
     }
+
+    .home{
+        background-image: url(../assets/images/pexels-stephan-seeber-1261728.jpg);
+        background-size: cover;
+    }
 }
 
 .barra{
@@ -71,6 +81,8 @@
 footer,.btn {
     background-color: rgb(220,4,108);
 }
+
+
 
 .upcoming{
     background-image: url(../assets/images/amigos-tintinean-vasos-bebida-bar-moderno_1150-18971.avif);
@@ -113,10 +125,27 @@ footer,.btn {
 
 .precioDetalles{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: black;
-    color: rgb(220,4,108);
+    background-color: rgb(220,4,108);
+    color: white;
     border-radius: 2rem;
     padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.card{
+    border-radius: 1rem;
+    background-color: black;
+    color: white;
+}
+
+.verMas{
+    text-align: center; 
+    font-family: Comic Sans MS; 
+    
+    color: rgb(255, 255, 255); 
+    text-shadow: -1px 0 #e896c2, 0 1px #e896c2, 1px 0 #414D68, 0 -1px #414D68, -1px 1px 0 #414D68, 1px 1px 0 #414D68, 1px 1px #414D68, 2px 2px #414D68, 2px 2px #414D68, 3px 3px #414D68, 4px 4px #414D68, 5px 5px #414D68;
+    padding: 1rem;
     display: flex;
     justify-content: center;
 }

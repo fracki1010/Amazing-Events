@@ -72,13 +72,13 @@ function dibujarTarjetas(obj, contenedorHTML) {
   obj.forEach((evento) => {
     stringTarjetas +=
       `<div class="card" id="" style="width: 16rem;">
-      <img src="${evento.image} alt="...">
-      <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
-        <h5 class="card-title">${evento.name}</h5>
-        <p class="card-text">${evento.description}</p>
-        <div class="d-flex justify-content-between align-items-center container-fluid">
-          <h6>Price: <span>${evento.price}</span>$</h6>
-            <a class="btn btn-primary p-1 m-1" href="./details.html?id=${evento._id}" id="${evento._id}" >Ver mas...</a>
+        <img class="card" src="${evento.image} alt="...">
+        <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
+          <h5 class="card-title">${evento.name}</h5>
+          <p class="card-text">${evento.description}</p>
+          <div class="d-flex justify-content-between align-items-center container-fluid">
+            <h6>Price: <span>${evento.price}</span>$</h6>
+            <a class="btn p-2 verMas" href="./details.html?id=${evento._id}" id="${evento._id}" >Ver mas</a>
         </div>
       </div>
     </div>`

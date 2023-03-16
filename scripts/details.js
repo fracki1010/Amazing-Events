@@ -11,7 +11,7 @@ console.log(tarjetaDetalles);
 let contenedorDetalle = document.getElementById("detalles");
 let string = '';
 string +=
-    `<div class="card p-3 d-flex " style="width: 9000px; height: auto;">
+    `<div class="card p-3 d-flex " style="width: 10000px; height: auto;">
     <div class="row g-0">
      <div class="col-sm-6 col-12">
         <img src="${tarjetaDetalles.image}" id="" style="width: 100%; height: auto;"
