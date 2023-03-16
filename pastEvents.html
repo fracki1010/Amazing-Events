@@ -20,23 +20,22 @@
     <header>
         <nav class="navbar navbar-expand-md pt-3 bg-white">
             <div class="container-fluid">
-                <img class="p-2 me-1" src="./assets/images/Logo Amazing Events.png" width="200px" alt="">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse me-4 d-md-flex justify-content-end" id="navbarNavAltMarkup">
-                    <div class="navbar-nav gap-md-4">
-                        <a class="nav-link navegador" aria-current="page" href="./index.html">Home</a>
-                        <a class="nav-link navegador" href="./upcoming.html">Upcoming Event</a>
-                        <a class="nav-link navegador" href="#">Past Events</a>
-                        <a class="nav-link navegador" href="./contact.html">Contact</a>
-                        <a class="nav-link navegador" href="./stats.html">Stats</a>
-                    </div>
+              <img class="p-2 me-1" src="./assets/images/Logo Amazing Events.png" width="200px" alt="">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav1"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse me-4 d-md-flex justify-content-end" id="nav1">
+                <div class="navbar-nav gap-md-4">
+                  <a class="nav-link navegador" aria-current="page" href="./index.html">Home</a>
+                  <a class="nav-link navegador" href="#">Upcoming Event</a>
+                  <a class="nav-link navegador" href="./pastEvents.html">Past Events</a>
+                  <a class="nav-link navegador" href="./contact.html">Contact</a>
+                  <a class="nav-link navegador" href="./stats.html">Stats</a>
                 </div>
+              </div>
             </div>
-        </nav>
+          </nav>
     </header>
 
     <main class="mb-5 pb-3">
@@ -54,121 +53,18 @@
                 Categorias
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav fs-6 d-flex flex-row flex-wrap">
-                  <div class="form-check m-3 border-0">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">Category</label>
-                  </div>
-                  <div class="form-check m-3 border-0">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">Category</label>
-                  </div>
-                  <div class="form-check m-3 border-0">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">Category</label>
-                  </div>
-                  <div class="form-check m-3 border-0">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
-                    <label class="form-check-label" for="inlineCheckbox4">Category</label>
-                  </div>
-                  <div class="form-check m-3 border-0">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
-                    <label class="form-check-label" for="inlineCheckbox5">Category</label>
-                  </div>
-                  <div class="form-check m-3 border-0">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
-                    <label class="form-check-label" for="inlineCheckbox6">Category</label>
-                  </div>
-      
-      
+                <div class="navbar-nav fs-6 d-flex flex-row flex-wrap" id="categorias">
                 </div>
               </div>
-              <form class="d-flex pt-2 role=" search>
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-success" type="submit">Search</button>
+              <form class="d-flex pt-2" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="buscador">
+                <button class="btn btn-success" type="submit" id="bBuscador">Search</button>
               </form>
             </div>
           </nav>
 
+
         <div class="p-3 m-2 d-flex flex-wrap gap-5 justify-content-center" id="contenedorCard">
-            <div class="card" style="width: 16rem;">
-                <img src="./assets/images/Music_Concert.jpg" class="card-img-top" alt="...">
-                <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
-                    <h5 class="card-title">Titulo</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <div class="d-flex justify-content-between align-items-center container-fluid">
-                        <h6>Price: <span>300$</span></h5>
-                            <a class="btn btn-primary p-1 m-1" href="./details.html">Ver mas...</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card" style="width: 16rem;">
-                <img src="./assets/images/Costume_Party.jpg" class="card-img-top" alt="...">
-                <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
-                    <h5 class="card-title">Titulo</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <div class="d-flex justify-content-between align-items-center container-fluid">
-                        <h6>Price: <span>300$</span></h5>
-                            <a class="btn btn-primary p-1 m-1" href="./details.html">Ver mas...</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card" style="width: 16rem;">
-                <img src="./assets/images/Museum_Tour.jpg" class="card-img-top" alt="...">
-                <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
-                    <h5 class="card-title">Titulo</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <div class="d-flex justify-content-between align-items-center container-fluid">
-                        <h6>Price: <span>300$</span></h5>
-                            <a class="btn btn-primary p-1 m-1" href="./details.html">Ver mas...</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card" style="width: 16rem;">
-                <img src="./assets/images/Food_Fair.jpg" class="card-img-top" alt="...">
-                <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
-                    <h5 class="card-title">Titulo</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <div class="d-flex justify-content-between align-items-center container-fluid">
-                        <h6>Price: <span>300$</span></h5>
-                            <a class="btn btn-primary p-1 m-1" href="./details.html">Ver mas...</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card" style="width: 16rem;">
-                <img src="./assets/images/Cinema.jpg" class="card-img-top" alt="...">
-                <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
-                    <h5 class="card-title">Titulo</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <div class="d-flex justify-content-between align-items-center container-fluid">
-                        <h6>Price: <span>300$</span></h5>
-                            <a class="btn btn-primary p-1 m-1" href="./details.html">Ver mas...</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card" style="width: 16rem;">
-                <img src="./assets/images/Marathon.jpg" class="card-img-top" alt="...">
-                <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
-                    <h5 class="card-title">Titulo</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <div class="d-flex justify-content-between align-items-center container-fluid">
-                        <h6>Price: <span>300$</span></h5>
-                            <a class="btn btn-primary p-1 m-1" href="./details.html">Ver mas...</a>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </main>

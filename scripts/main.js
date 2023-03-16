@@ -65,7 +65,7 @@ function dibujarCategorias(lista) {
 
 function dibujarTarjetas(obj, contenedorHTML) {
   if (obj.length == 0) {
-    contenedorHTML.innerHTML = `<h3 class="text-light p-3"> No hay elementos que coincidan con la busqueda</h3>`;
+    contenedorHTML.innerHTML = `<h3 class="text-light p-3 text-center"> No hay elementos que coincidan con la busqueda</h3>`;
     return
   }
   let stringTarjetas = ``
