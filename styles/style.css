@@ -149,3 +149,9 @@ footer,.btn {
     display: flex;
     justify-content: center;
 }
+
+.imgDetalles{
+    background-image: url(../assets/images/pexels-tim-mossholder-7104017.jpg);
+    background-size: cover;
+    text-decoration:dashed;
+}
