@@ -82,11 +82,13 @@ footer,.btn {
 }
 
 .table{
-    font-weight: 700;
+    font-weight: bolder;
     font-size: 1rem;
     font-family: sans-serif;
-    border: 10px 40px 40px 3rem red;
-    border-block-color: white;
+    color: white;
+    border-style: outset;
+    text-decoration:dotted;
+    border-color: red;
 
 }
 
