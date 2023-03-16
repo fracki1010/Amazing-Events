@@ -82,10 +82,41 @@ footer,.btn {
 }
 
 .table{
-    font-weight: 700;
+    font-weight: bolder;
     font-size: 1rem;
     font-family: sans-serif;
-    border: 10px 40px 40px 3rem red;
-    border-block-color: white;
+    color: white;
+    border-style: outset;
+    text-decoration:dotted;
+    border-color: red;
 
+}
+
+.tituloDetalles{
+    text-align: center; 
+    font-family: Comic Sans MS; 
+    
+    color: rgb(220,4,108); 
+    text-shadow: -1px 0 #414D68, 0 1px #414D68, 1px 0 #414D68, 0 -1px #414D68, -2px 2px 0 #414D68, 2px 2px 0 #414D68, 1px 1px #414D68, 2px 2px #414D68, 3px 3px #414D68, 4px 4px #414D68, 5px 5px #414D68, 6px 6px #414D68, 7px 7px #414D68, 8px 8px #414D68, 9px 9px #414D68;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.descripcionDetalles{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: black;
+    color: white;
+    border-radius: 2rem;
+    padding: 1rem;
+}
+
+.precioDetalles{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: black;
+    color: rgb(220,4,108);
+    border-radius: 2rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
 }
