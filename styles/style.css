@@ -90,18 +90,14 @@ footer,.btn {
 }
 
 .stats{
-    background-image: url(../assets/images/descarga.webp);
+    background-image: url(../assets/images/pexels-david-bartus-963278.jpg);
+    background-size: cover;
+    -webkit-text-stroke: 1.3px black;
+    color: red;
 }
 
-.table{
-    font-weight: bolder;
-    font-size: 1rem;
-    font-family: sans-serif;
-    color: white;
-    border-style: outset;
-    text-decoration:dotted;
-    border-color: red;
-
+.table, td{
+    border-color: red;  
 }
 
 .tituloDetalles{

@@ -1,3 +1,8 @@
+//variables
+let API = "https://mindhub-xj03.onrender.com/api/amazing"
+let dataEventos
+let dataAPI
+
 // capturadores
 let contenedorCard = document.getElementById("contenedorCard");
 let buscador = document.getElementById("buscador");
@@ -5,19 +10,34 @@ let botonBuscador = document.forms[0];
 let ContenedorChequeo = document.getElementById("categorias");
 
 //llamadas
-dibujarUpComing(data.events, contenedorCard)
-dibujarCategorias(data.events)
 
-botonBuscador.addEventListener("submit",(e)=>{
-  e.preventDefault()
-  FiltroDoble();
-})
+fetch(API)
+  .then((response)=>response.json())
+  .then((datos) => {
+    console.log(datos.events);
 
-ContenedorChequeo.addEventListener("change", FiltroDoble)
+    dataEventos = datos.events
+    dataAPI = datos
+    
+    dibujarUpComing(dataEventos, contenedorCard)
+    dibujarCategorias(dataEventos)
+    
+    botonBuscador.addEventListener("submit",(e)=>{
+      e.preventDefault()
+      FiltroDoble(dataEventos);
+    })
+    
+    ContenedorChequeo.addEventListener("change",()=>{
+     FiltroDoble(dataEventos); 
+    })
 
-
+  })
+ 
+  
+  
 
 //funciones
+
 function dibujarUpComing(lista, contenedorHTML){
   if (lista.length == 0) {
     contenedorHTML.innerHTML = `<h3 class="text-light p-3 text-center"> No hay elementos que coincidan con la busqueda</h3>`;
@@ -25,8 +45,7 @@ function dibujarUpComing(lista, contenedorHTML){
   }
   let stringTarjetas = ``
   for (eventos of lista) {
-
-    if (data.currentDate > eventos.date) {
+    if (dataAPI.currentDate > eventos.date) {
       stringTarjetas +=
         `<div class="card" id="" style="width: 16rem;">
     <img class="card" src="${eventos.image} alt="...">
@@ -84,8 +103,8 @@ function filtroCategorias(lista){
   return filtrarCheckCategorias;
 }
 
-function FiltroDoble(){
-  let primerFiltro = filtroBuscador(data.events, buscador.value);
+function FiltroDoble(lista){
+  let primerFiltro = filtroBuscador(lista, buscador.value);
   let segundoFiltro = filtroCategorias(primerFiltro)
   dibujarUpComing(segundoFiltro,contenedorCard); // unica diferencia de las funciones del main
 }

@@ -1,36 +1,38 @@
+// variables
+let API = "https://mindhub-xj03.onrender.com/api/amazing"
+
 //capturadores
 let contenedorCard = document.getElementById("contenedorCard")
-
 let buscador = document.getElementById("buscador")
-
 let botonBuscador = document.forms[0];
 let ContenedorChequeo = document.getElementById("categorias");
 
 
 
 //llamadas 
+fetch(API)
+  .then((response)=> response.json())
+  .then((datos)=> datos.events)
+  .then((dataEventos)=>{
+    dibujarTarjetas(dataEventos, contenedorCard);
+    botonBuscador.addEventListener("submit",(e)=>{
+    e.preventDefault()
+    FiltroDoble(dataEventos)})
+    ContenedorChequeo.addEventListener("change", ()=>{
+      FiltroDoble(dataEventos)
+    })
+    dibujarCategorias(dataEventos);
 
-dibujarTarjetas(data.events, contenedorCard);
-
-botonBuscador.addEventListener("submit",(e)=>{
-  e.preventDefault()
-  FiltroDoble();
-})
-
-ContenedorChequeo.addEventListener("change", FiltroDoble)
 
 
-dibujarCategorias(data.events);
-
-
-
+  })
 
 
 //funciones
 
 
-function FiltroDoble(){
-  let primerFiltro = filtroBuscador(data.events, buscador.value);
+function FiltroDoble(lista){
+  let primerFiltro = filtroBuscador(lista, buscador.value);
   let segundoFiltro = filtroCategorias(primerFiltro)
   dibujarTarjetas(segundoFiltro,contenedorCard);
 }
@@ -42,7 +44,7 @@ function filtroBuscador(lista, texto) {
 
 function dibujarCategorias(lista) {
   let categorias = lista.map((e) => e.category);
-  let setCategorias = new Set(categorias.sort((a,b)=>{
+  let setCategorias = new Set(categorias.sort((a,b)=>{ //el Set no admite elementos repetidos
     if(a<b){
       return -1;
     }
