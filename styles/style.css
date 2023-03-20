@@ -94,10 +94,16 @@ footer,.btn {
     background-size: cover;
     -webkit-text-stroke: 1.3px black;
     color: red;
+    text-align: center;
+}
+
+.wid{
+    width: 80%;
 }
 
 .table, td{
-    border-color: red;  
+    border-color: red;
+    
 }
 
 .tituloDetalles{
