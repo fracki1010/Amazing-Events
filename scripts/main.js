@@ -23,8 +23,7 @@ fetch(API)
     })
     dibujarCategorias(dataEventos);
 
-
-
+    console.log(dataEventos);
   })
 
 

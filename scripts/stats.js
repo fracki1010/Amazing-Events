@@ -9,6 +9,7 @@ let arrayFut = []
 let eventMaxAsist = document.getElementById("eventMaxAsist")
 let eventMinAsist = document.getElementById("eventMinAsist")
 let eventMaxCapac = document.getElementById("eventMaxCapac")
+let estadisticas = document.getElementById("estadisticas")
 
 let estadisticaCategoriasFut = document.getElementById("estadisticaCategoriasFut")
 let estadisticaCategoriasPast = document.getElementById("estadisticaCategoriasPast")
@@ -23,87 +24,69 @@ fetch(API)
         dataAPI = datos
 
 
-        FiltroEventosPasados(dataEventos)
-        FiltroEventosFuturos(dataEventos)
-        DibujarEstadisticas()
-        dibujarEstadisticasCategorias(arrayFut,estadisticaCategoriasFut)
-        dibujarEstadisticasCategorias(arrayPast,estadisticaCategoriasPast)
+        FiltroEventos(dataEventos)
+        DibujarEstadisticas(arrayPast)
+        dibujarEstadisticasCategorias(arrayFut, estadisticaCategoriasFut)
+        dibujarEstadisticasCategorias(arrayPast, estadisticaCategoriasPast)
     })
 
-    console.log(arrayPast);
+console.log(arrayPast);
 
 //funciones
 
-function FiltroEventosPasados(lista) {
+function FiltroEventos(lista) {
     for (eventos of lista) {
 
         if (dataAPI.currentDate > eventos.date) {
             eventos.porsentaje = (eventos.assistance / eventos.capacity) * 100
             arrayPast.push(eventos)
-        }
-    }
-}
-function FiltroEventosFuturos(lista) {
-    for (eventos of lista) {
-
-        if (dataAPI.currentDate < eventos.date) {
-            eventos.porsentaje = (eventos.assistance / eventos.capacity) * 100
+        }else{
+            eventos.porsentaje = (eventos.estimate / eventos.capacity) * 100
             arrayFut.push(eventos)
         }
     }
 }
 
+function DibujarEstadisticas(arr) {
 
-function DibujarEstadisticas() {
-    let arrEventosMax
-    let arrEventosMin
-    let arrEventosMaxCapac
-    let maxCapacity
+    let arrayPorsentajesPast = arr.map((evento) => evento.porsentaje)
+    let arrayCapacidadPast = arr.map((evento) => evento.capacity)
 
-    let arrayPorsentajesPast = arrayPast.map((evento) => evento.porsentaje)
-    let arrayCapacidadPast = arrayPast.map((evento) => evento.capacity)
     // porsentajes maximos y minimos
-    let min
-    let max
-    max = Math.max(...arrayPorsentajesPast);
-    min = Math.min(...arrayPorsentajesPast);
-    maxCapacity = Math.max(...arrayCapacidadPast);
+    let min = maximoYMinimos(arrayPorsentajesPast, "min")
+    let max = maximoYMinimos(arrayPorsentajesPast, "max")
+    let maxCapacity = maximoYMinimos(arrayCapacidadPast, "max")
+    let string = ``
 
-    arrEventosMax = arrayPast.filter((evento) => evento.porsentaje == max)
-    arrEventosMin = arrayPast.filter((evento) => evento.porsentaje == min)
-    arrEventosMaxCapac = arrayPast.filter((evento) => evento.capacity == maxCapacity)
 
-    eventMaxAsist.innerHTML = `<p>${arrEventosMax[0].name} (${arrEventosMax[0].porsentaje} %)</p>`
-    eventMinAsist.innerHTML = `<p>${arrEventosMin[0].name} (${arrEventosMin[0].porsentaje} %)</p>`
-    eventMaxCapac.innerHTML = `<p>${arrEventosMaxCapac[0].name} (${arrEventosMaxCapac[0].capacity})</p>`
+    let arrEventosMax = arr.filter((evento) => evento.porsentaje == max)
+    let arrEventosMin = arr.filter((evento) => evento.porsentaje == min)
+    let arrEventosMaxCapac = arr.filter((evento) => evento.capacity == maxCapacity)
+    
+    string +=
+        `<tr>
+            <td>${arrEventosMax[0].name} (${arrEventosMax[0].porsentaje} %)</td>
+            <td><p>${arrEventosMin[0].name} (${arrEventosMin[0].porsentaje} %)</td>
+            <td>${arrEventosMaxCapac[0].name} (${arrEventosMaxCapac[0].capacity})</td>
+        </tr>`
+
+
+    estadisticas.innerHTML = string
 }
 
-function dibujarEstadisticasCategorias(arr,contenedor) {
+function dibujarEstadisticasCategorias(arr, contenedor) {
     let categorias = arr.map((evento) => evento.category)
     let setCategoria = new Set(categorias)
     let setArrCategoria = Array.from(setCategoria)
+    setArrCategoria.sort()
 
-   
     let string = ``
     setArrCategoria.forEach((category) => {
 
-        let arrayEventsCategory = arr.filter((evento)=> category == evento.category)
-        
-        let arrayGanancias = arrayEventsCategory.map((evento)=> evento.estimate || evento.assistance)
-        let arrayPrice = arrayEventsCategory.map((evento)=> evento.price)
+        let arrayEventsCategory = arr.filter((evento) => category == evento.category)
 
-        let estimate = arrayGanancias.reduce((acc,ganancias)=> acc + ganancias)
-        let price = arrayPrice.reduce((acc, price)=> acc + price)
-        let revenues = estimate*price
-
-        let asistence = arrayEventsCategory.map((evento)=> evento.estimate || evento.assistance)
-        let totalAsistence = asistence.reduce((acc, asistencia)=> acc+asistencia)
-        
-        let capacity = arrayEventsCategory.map((evento)=>evento.capacity)
-        let totalCapacity = capacity.reduce((acc, capacity)=> acc+capacity)
-        
-        let porsentajeAsistence = (totalAsistence/totalCapacity)*100
-        
+        let revenues = fRevenues(arrayEventsCategory)
+        let porsentajeAsistence = porsentajeAsistencia(arrayEventsCategory)
 
         string +=
             `<tr>
@@ -112,7 +95,6 @@ function dibujarEstadisticasCategorias(arr,contenedor) {
             <td>${porsentajeAsistence.toFixed(2)} %</td>`
     })
     contenedor.innerHTML = string
-
 }
 
 function ordenar() {
@@ -125,14 +107,39 @@ function ordenar() {
     return 0;
 }
 
-/* function fRevenues(arr){
-    let arrayGanancias = arr.map((evento)=> evento.estimate)
-    let arrayPrice = arr.map((evento)=> evento.price)
+function fRevenues(arr) {
+    let arrayGanancias = arr.map((evento) => evento.estimate || evento.assistance)
+    let arrayPrice = arr.map((evento) => evento.price)
 
-    let estimate = arrayGanancias.reduce((acc,ganancias)=> acc + ganancias)
-    let price = arrayPrice.reduce((acc, price)=> acc + price)
-    let revenues = estimate*price
+    let estimate = arrayGanancias.reduce((acc, ganancias) => acc + ganancias)
+    let price = arrayPrice.reduce((acc, price) => acc + price)
+    let total = estimate * price
 
-    
+    return total;
 
-} */
+
+
+}
+
+function porsentajeAsistencia(arr) {
+    let asistence = arr.map((evento) => evento.estimate || evento.assistance)
+    let capacity = arr.map((evento) => evento.capacity)
+
+    let totalAsistence = asistence.reduce((acc, asistencia) => acc + asistencia)
+    let totalCapacity = capacity.reduce((acc, capacity) => acc + capacity)
+
+    let porsentajeAsistence = (totalAsistence / totalCapacity) * 100
+
+    return porsentajeAsistence
+
+}
+
+function maximoYMinimos(arr, result) {
+    if (result == "max" || result == "Max") {
+        let max = Math.max(...arr)
+        return max
+    } else {
+        let min = Math.min(...arr)
+        return min
+    }
+}
