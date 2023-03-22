@@ -11,14 +11,15 @@ let ContenedorChequeo = document.getElementById("categorias");
 
 //llamadas 
 fetch(API)
-  .then((response)=> response.json())
-  .then((datos)=> datos.events)
-  .then((dataEventos)=>{
+  .then((response) => response.json())
+  .then((datos) => datos.events)
+  .then((dataEventos) => {
     dibujarTarjetas(dataEventos, contenedorCard);
-    botonBuscador.addEventListener("submit",(e)=>{
-    e.preventDefault()
-    FiltroDoble(dataEventos)})
-    ContenedorChequeo.addEventListener("change", ()=>{
+    botonBuscador.addEventListener("submit", (e) => {
+      e.preventDefault()
+      FiltroDoble(dataEventos)
+    })
+    ContenedorChequeo.addEventListener("change", () => {
       FiltroDoble(dataEventos)
     })
     dibujarCategorias(dataEventos);
@@ -30,10 +31,10 @@ fetch(API)
 //funciones
 
 
-function FiltroDoble(lista){
+function FiltroDoble(lista) {
   let primerFiltro = filtroBuscador(lista, buscador.value);
   let segundoFiltro = filtroCategorias(primerFiltro)
-  dibujarTarjetas(segundoFiltro,contenedorCard);
+  dibujarTarjetas(segundoFiltro, contenedorCard);
 }
 
 function filtroBuscador(lista, texto) {
@@ -43,14 +44,7 @@ function filtroBuscador(lista, texto) {
 
 function dibujarCategorias(lista) {
   let categorias = lista.map((e) => e.category);
-  let setCategorias = new Set(categorias.sort((a,b)=>{ //el Set no admite elementos repetidos
-    if(a<b){
-      return -1;
-    }
-    if(a>b){
-      return 1;
-    }
-  }));
+  let setCategorias = new Set(categorias.sort(ordenar()))
 
   let string = ``;
   setCategorias.forEach((e) => {
@@ -59,7 +53,7 @@ function dibujarCategorias(lista) {
       <input class="form-check-input" type="checkbox" id="${e}" value="${e}">
       <label class="form-check-label" for="${e}">${e}</label>
       </div>`
-  ContenedorChequeo.innerHTML = string;
+    ContenedorChequeo.innerHTML = string;
 
   })
 }
@@ -88,18 +82,27 @@ function dibujarTarjetas(obj, contenedorHTML) {
 }
 
 
-function filtroCategorias(lista){
+function filtroCategorias(lista) {
   let checkCategorias = document.querySelectorAll("input[type='checkbox']");
-  
-  let checkCategoriasArr = Array.from(checkCategorias); //pasar los elementos a un array porque son un Node List
-  let checkConfirmados = checkCategoriasArr.filter((e)=> e.checked);
 
-  if(checkConfirmados.length == 0){
+  let checkCategoriasArr = Array.from(checkCategorias); //pasar los elementos a un array porque son un Node List
+  let checkConfirmados = checkCategoriasArr.filter((e) => e.checked);
+
+  if (checkConfirmados.length == 0) {
     return lista;
   }
 
-  let categoriaCheckbox = checkConfirmados.map ((e)=> e.value);
-  let filtrarCheckCategorias = lista.filter((e)=> categoriaCheckbox.includes(e.category));
+  let categoriaCheckbox = checkConfirmados.map((e) => e.value);
+  let filtrarCheckCategorias = lista.filter((e) => categoriaCheckbox.includes(e.category));
 
   return filtrarCheckCategorias;
+}
+
+function ordenar(a, b){
+  if (a < b) {
+    return -1;
+  }
+  if (a > b) {
+    return 1;
+  }
 }

@@ -1,7 +1,8 @@
 // variables
 let API = "https://mindhub-xj03.onrender.com/api/amazing"
-let datosAPI
+let dataAPI
 let dataEventos
+let arrayPast = []
 
 //capturadores
 let contenedorCard = document.getElementById("contenedorCard")
@@ -16,21 +17,21 @@ fetch(API)
   .then((response) => response.json())
   .then(datos => {
 
-    datosAPI = datos
+    dataAPI = datos
     dataEventos = datos.events
 
 
-
-    dibujarPastEvent(dataEventos, contenedorCard);
-    dibujarCategorias(dataEventos)
+    FiltroEventosPasados(dataEventos)
+    dibujarPastEvent(arrayPast, contenedorCard)
+    dibujarCategorias(arrayPast)
 
     botonBuscador.addEventListener("submit", (e) => {
       e.preventDefault()
-      FiltroDoble(dataEventos);
+      FiltroDoble(arrayPast);
     })
 
-    ContenedorChequeo.addEventListener("change",()=>{
-      FiltroDoble(dataEventos);
+    ContenedorChequeo.addEventListener("change", () => {
+      FiltroDoble(arrayPast);
     })
   })
 
@@ -40,16 +41,14 @@ fetch(API)
 
 function dibujarPastEvent(lista, contenedorHTML) {
   if (lista.length == 0) {
-    
+
     contenedorHTML.innerHTML = `<h3 class="text-light p-3 text-center"> No hay elementos que coincidan con la busqueda</h3>`;
     return
   }
   let stringTarjetas = ``
   for (eventos of lista) {
-
-    if (datosAPI.currentDate < eventos.date) {
-      stringTarjetas +=
-        `<div class="card" id="" style="width: 16rem;">
+    stringTarjetas +=
+      `<div class="card" id="" style="width: 16rem;">
     <img class="card" src="${eventos.image} alt="...">
     <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
       <h5 class="card-title">${eventos.name}</h5>
@@ -60,8 +59,6 @@ function dibujarPastEvent(lista, contenedorHTML) {
       </div>
     </div>
   </div>`
-    }
-
   }
   contenedorHTML.innerHTML = stringTarjetas;
 }
@@ -114,4 +111,12 @@ function dibujarCategorias(lista) {
     ContenedorChequeo.innerHTML = string;
 
   })
+}
+
+function FiltroEventosPasados(lista) {
+  for (eventos of lista) {
+    if (dataAPI.currentDate > eventos.date) {
+      arrayPast.push(eventos)
+    }
+  }
 }

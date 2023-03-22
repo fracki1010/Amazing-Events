@@ -2,6 +2,7 @@
 let API = "https://mindhub-xj03.onrender.com/api/amazing"
 let dataEventos
 let dataAPI
+let arrayFut = []
 
 // capturadores
 let contenedorCard = document.getElementById("contenedorCard");
@@ -12,41 +13,39 @@ let ContenedorChequeo = document.getElementById("categorias");
 //llamadas
 
 fetch(API)
-  .then((response)=>response.json())
+  .then((response) => response.json())
   .then((datos) => {
-    console.log(datos.events);
 
     dataEventos = datos.events
     dataAPI = datos
-    
-    dibujarUpComing(dataEventos, contenedorCard)
-    dibujarCategorias(dataEventos)
-    
-    botonBuscador.addEventListener("submit",(e)=>{
+
+    FiltroEventosFuturos(dataEventos)
+    dibujarUpComing(arrayFut, contenedorCard)
+    dibujarCategorias(arrayFut)
+
+    botonBuscador.addEventListener("submit", (e) => {
       e.preventDefault()
-      FiltroDoble(dataEventos);
-    })
-    
-    ContenedorChequeo.addEventListener("change",()=>{
-     FiltroDoble(dataEventos); 
+      FiltroDoble(arrayFut);
     })
 
+    ContenedorChequeo.addEventListener("change", () => {
+      FiltroDoble(arrayFut);
+    })
   })
- 
-  
-  
+
+
+
 
 //funciones
 
-function dibujarUpComing(lista, contenedorHTML){
+function dibujarUpComing(lista, contenedorHTML) {
   if (lista.length == 0) {
     contenedorHTML.innerHTML = `<h3 class="text-light p-3 text-center"> No hay elementos que coincidan con la busqueda</h3>`;
     return
   }
   let stringTarjetas = ``
   for (eventos of lista) {
-    if (dataAPI.currentDate > eventos.date) {
-      stringTarjetas +=
+    stringTarjetas +=
         `<div class="card" id="" style="width: 16rem;">
     <img class="card" src="${eventos.image} alt="...">
     <div class="card-body m-0 p-3 d-flex flex-column align-items-center justify-content-around">
@@ -58,19 +57,17 @@ function dibujarUpComing(lista, contenedorHTML){
       </div>
     </div>
   </div>`
-    }
-
   }
   contenedorHTML.innerHTML = stringTarjetas;
 }
 
 function dibujarCategorias(lista) {
   let categorias = lista.map((e) => e.category);
-  let setCategorias = new Set(categorias.sort((a,b)=>{
-    if(a<b){
+  let setCategorias = new Set(categorias.sort((a, b) => {
+    if (a < b) {
       return -1;
     }
-    if(a>b){
+    if (a > b) {
       return 1;
     }
   }));
@@ -82,31 +79,31 @@ function dibujarCategorias(lista) {
       <input class="form-check-input" type="checkbox" id="${e}" value="${e}">
       <label class="form-check-label" for="${e}">${e}</label>
       </div>`
-  ContenedorChequeo.innerHTML = string;
+    ContenedorChequeo.innerHTML = string;
 
   })
 }
 
-function filtroCategorias(lista){
+function filtroCategorias(lista) {
   let checkCategorias = document.querySelectorAll("input[type='checkbox']");
-  
-  let checkCategoriasArr = Array.from(checkCategorias); //pasar los elementos a un array porque son un Node List
-  let checkConfirmados = checkCategoriasArr.filter((e)=> e.checked);
 
-  if(checkConfirmados.length == 0){
+  let checkCategoriasArr = Array.from(checkCategorias); //pasar los elementos a un array porque son un Node List
+  let checkConfirmados = checkCategoriasArr.filter((e) => e.checked);
+
+  if (checkConfirmados.length == 0) {
     return lista;
   }
 
-  let categoriaCheckbox = checkConfirmados.map ((e)=> e.value);
-  let filtrarCheckCategorias = lista.filter((e)=> categoriaCheckbox.includes(e.category));
+  let categoriaCheckbox = checkConfirmados.map((e) => e.value);
+  let filtrarCheckCategorias = lista.filter((e) => categoriaCheckbox.includes(e.category));
 
   return filtrarCheckCategorias;
 }
 
-function FiltroDoble(lista){
+function FiltroDoble(lista) {
   let primerFiltro = filtroBuscador(lista, buscador.value);
   let segundoFiltro = filtroCategorias(primerFiltro)
-  dibujarUpComing(segundoFiltro,contenedorCard); // unica diferencia de las funciones del main
+  dibujarUpComing(segundoFiltro, contenedorCard); // unica diferencia de las funciones del main
 }
 
 function filtroBuscador(lista, texto) {
@@ -116,11 +113,11 @@ function filtroBuscador(lista, texto) {
 
 function dibujarCategorias(lista) {
   let categorias = lista.map((e) => e.category);
-  let setCategorias = new Set(categorias.sort((a,b)=>{
-    if(a<b){
+  let setCategorias = new Set(categorias.sort((a, b) => {
+    if (a < b) {
       return -1;
     }
-    if(a>b){
+    if (a > b) {
       return 1;
     }
   }));
@@ -132,7 +129,16 @@ function dibujarCategorias(lista) {
       <input class="form-check-input" type="checkbox" id="${e}" value="${e}">
       <label class="form-check-label" for="${e}">${e}</label>
       </div>`
-  ContenedorChequeo.innerHTML = string;
+    ContenedorChequeo.innerHTML = string;
 
   })
+}
+
+function FiltroEventosFuturos(lista) {
+  for (eventos of lista) {
+
+    if (dataAPI.currentDate < eventos.date) {
+      arrayFut.push(eventos)
+    }
+  }
 }
