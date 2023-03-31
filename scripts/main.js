@@ -1,5 +1,44 @@
+const { createApp } = Vue
+
+  createApp({
+    data() {
+      return {
+        dataApi: "https://mindhub-xj03.onrender.com/api/amazing",
+        data: [],
+        eventos: []
+      
+      }
+    },
+    created(){
+
+
+    },
+    mounted(){
+
+    },
+    methods:{
+      getdata(){
+        fetch(this.dataApi)
+        .then(response => response.json())
+        .then(data => {
+          
+          this.datos = data
+          this.eventos = data.events
+        })
+      }
+
+    },
+    computed:{
+
+    }
+  }).mount('#app')
+
+
+
+
+
 // variables
-let API = "https://mindhub-xj03.onrender.com/api/amazing"
+/* let API = "https://mindhub-xj03.onrender.com/api/amazing"
 
 //capturadores
 let contenedorCard = document.getElementById("contenedorCard")
@@ -105,4 +144,4 @@ function ordenar(a, b){
   if (a > b) {
     return 1;
   }
-}
+} */
