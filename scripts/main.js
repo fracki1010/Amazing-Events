@@ -5,12 +5,15 @@ const { createApp } = Vue
       return {
         dataApi: "https://mindhub-xj03.onrender.com/api/amazing",
         data: [],
-        eventos: []
-      
+        eventos: [],
+        buscador: "",
+        eventosFiltrados: [],
+        categorys: [],
+        categoryCheck:[]
       }
     },
     created(){
-
+      this.getdata()
 
     },
     mounted(){
@@ -24,12 +27,28 @@ const { createApp } = Vue
           
           this.datos = data
           this.eventos = data.events
+          this.eventosFiltrados = data.events
+          this.getcategory(data.events)
         })
+      },
+      getcategory(arr){
+        arr.forEach(evento => {
+          if(!this.categorys.includes(evento.category)){
+            this.categorys.push(evento.category)
+          }
+        });
       }
 
     },
     computed:{
-
+      filtroBuscador(){
+        let primerFiltro =  this.eventosFiltrados = this.eventos.filter(evento => evento.name.toLowerCase().includes(this.buscador.toLowerCase()))
+        if(!this.categoryCheck.length){
+          this.eventosFiltrados = primerFiltro
+        }else{
+          this.eventosFiltrados = primerFiltro.filter(evento => this.categoryCheck.includes(evento.category))
+        }
+      }
     }
   }).mount('#app')
 
