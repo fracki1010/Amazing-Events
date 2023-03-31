@@ -66,7 +66,7 @@
             <input v-model="buscador" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
               id="buscador">
             {{filtroBuscador}}
-            <button class="btn btn-success" type="submit" id="bBuscador">Search</button>
+            <button v-on:click.prevent="()=>(this.botonBuscador = this.buscador)" class="btn btn-success" type="submit" id="bBuscador">Search</button>
           </form>
         </div>
       </nav>
